@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Ruta directa al archivo styles.css -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Gestión de Automóviles</title>
+</head>
+<body>
+    <header>
+        <h1>Gestión de Automóviles</h1>
+    </header>
+    <main>
+        <section class="form-section">
+            <h2>Agregar un Automóvil</h2>
+            <form action="/add" method="POST">
+                <input type="text" name="marca" placeholder="Marca" required>
+                <input type="text" name="modelo" placeholder="Modelo" required>
+                <input type="number" name="anio" placeholder="Año" required>
+                <input type="number" step="0.01" name="precio" placeholder="Precio" required>
+                <button type="submit"><i class="fas fa-plus-circle"></i> Agregar</button>
+            </form>
+        </section>
+        <section class="table-section">
+            <h2>Listado de Automóviles</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for automovil in automoviles %}
+                    <tr>
+                        <td>{{ automovil[0] }}</td>
+                        <td>{{ automovil[1] }}</td>
+                        <td>{{ automovil[2] }}</td>
+                        <td>{{ automovil[3] }}</td>
+                        <td>{{ automovil[4] }}</td>
+                        <td>
+                            <a href="/edit/{{ automovil[0] }}" class="btn btn-edit"><i class="fas fa-edit"></i> Editar</a>
+                            <a href="/delete/{{ automovil[0] }}" class="btn btn-delete"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>Gestión de Automóviles &copy; 2024</p>
+    </footer>
+</body>
+</html>
